@@ -4,7 +4,7 @@ import Header from './components/Header.jsx';
 import Shop from './components/Shop.jsx';
 import { DUMMY_PRODUCTS } from './dummy-products.js';
 import Product from './components/Product.jsx';
-
+import { CartContext } from './store/shopping-cart-context.jsx';
 function App() {
   const [shoppingCart, setShoppingCart] = useState({
     items: [],
@@ -65,9 +65,13 @@ function App() {
       };
     });
   }
-
+const ctxValue={
+  items: shoppingCart.items,
+  addItemToCart: handleAddItemToCart
+}
   return (
-    <>
+  //  react version 19 less than required .provider . 19 or above  version not necessary to add .provider
+   <CartContext.Provider value={ctxValue}>
       <Header
         cart={shoppingCart}
         onUpdateCartItemQuantity={handleUpdateCartItemQuantity}
@@ -79,7 +83,7 @@ function App() {
           </li>
         ))}
       </Shop>
-    </>
+    </CartContext.Provider>
   );
 }
 
