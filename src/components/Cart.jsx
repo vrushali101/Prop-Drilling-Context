@@ -1,18 +1,10 @@
-import { use } from "react";
+//import { use } from "react";
 import { CartContext } from "../store/shopping-cart-context";
 export default function Cart({ items, onUpdateItemQuantity }) {
-  //const cartCtx = use(CartContext);
-
-  
-
+//const cartCtx = use(CartContext);
   return (
     <CartContext.Consumer>
-      {(CartCtx) => {
-        const totalPrice = CartCtx.items.reduce(
-          (acc, item) => acc + item.price * item.quantity,
-          0
-        );
-        const formattedTotalPrice = `$${totalPrice.toFixed(2)}`;
+      {(CartCtx)=>{
         <div id="cart">
           {CartCtx.items.length === 0 && <p>No items in cart!</p>}
           {CartCtx.items.length > 0 && (
@@ -43,7 +35,7 @@ export default function Cart({ items, onUpdateItemQuantity }) {
           <p id="cart-total-price">
             Cart Total: <strong>{formattedTotalPrice}</strong>
           </p>
-        </div>;
+        </div>
       }}
     </CartContext.Consumer>
   );
